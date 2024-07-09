@@ -1,0 +1,21 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Chefs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Dishes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="reservation-tab" data-toggle="tab" href="#reservation" role="tab" aria-controls="reservation" aria-selected="false">Reservation</a>
+      </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><app-chef-table></app-chef-table></div>
+        
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><app-users-table></app-users-table></div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><app-dishes-table></app-dishes-table></div>
+    <div class="tab-pane fade" id="reservation" role="tabpanel" aria-labelledby="reservation-tab"><app-reservation-table></app-reservation-table></div>
+  </div>
