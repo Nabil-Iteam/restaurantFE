@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationTableComponent implements OnInit {
 
+  reservations = [
+    { id: 1, client: 'John Doe', plat: 'Pork Sandwich', date: '2024-07-01', nombrePlats: 2 },
+    { id: 1, client: 'John Doe', plat: 'Pork Sandwich', date: '2024-07-01', nombrePlats: 2 },
+    { id: 1, client: 'John Doe', plat: 'Pork Sandwich', date: '2024-07-01', nombrePlats: 2 },
+    // Ajoutez d'autres réservations ici
+  ];
   constructor() { }
 
   ngOnInit(): void {
+    
   }
+  displayReservation(){}
+  deleteReservation(){}
+  editReservation(){}
 
 }

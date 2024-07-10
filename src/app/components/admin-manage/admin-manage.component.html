@@ -1,21 +1,58 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Chefs</a>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Dishes</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" id="reservation-tab" data-toggle="tab" href="#reservation" role="tab" aria-controls="reservation" aria-selected="false">Reservation</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Users</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Dishes</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="reservation-tab" data-toggle="tab" href="#reservation" role="tab" aria-controls="reservation" aria-selected="false">Reservation</a>
-      </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><app-chef-table></app-chef-table></div>
-        
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><app-users-table></app-users-table></div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><app-dishes-table></app-dishes-table></div>
-    <div class="tab-pane fade" id="reservation" role="tabpanel" aria-labelledby="reservation-tab"><app-reservation-table></app-reservation-table></div>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><app-dishes-table></app-dishes-table></div>
+  <div class="tab-pane fade" id="reservation" role="tabpanel" aria-labelledby="reservation-tab"><app-reservation-table></app-reservation-table></div>
+</div>
+
+<section class="food_menu gray_bg">
+  <div class="container">
+      <div class="row justify-content-between">
+          <div class="col-lg-5">
+              <div class="section_tittle">
+                  <p>Chef Menu</p>
+                  <h2>MENU TABLE</h2>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="nav nav-tabs food_menu_nav" id="myTab" role="tablist">
+                  <a class="active" id="Special-tab" data-toggle="tab" href="#Special" role="tab"
+                      aria-controls="Special" aria-selected="false">Dishes <img src="./assets/img/icon/play.svg"
+                          alt="play"></a>
+                  <a id="Breakfast-tab" data-toggle="tab" href="#Breakfast" role="tab" aria-controls="Breakfast"
+                      aria-selected="false">Reservations <img src="./assets/img/icon/play.svg" alt="play"></a>
+                  <a id="Dinner-tab" data-toggle="tab" href="#Dinner" role="tab" aria-controls="Dinner"
+                  aria-selected="false">Users <img src="./assets/img/icon/play.svg" alt="play"> </a>
+                  <a id="Sneaks-tab" data-toggle="tab" href="#Sneaks" role="tab" aria-controls="Sneaks"
+                      aria-selected="false">Chefs <img src="./assets/img/icon/play.svg" alt="play"></a>
+                    </div>
+          </div>
+          <div class="col-lg-12">
+              <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active single-member" id="Special" role="tabpanel"
+                      aria-labelledby="Special-tab">
+                      <app-dishes-table></app-dishes-table>
+                  </div>
+                  <div class="tab-pane fade single-member" id="Breakfast" role="tabpanel"
+                      aria-labelledby="Breakfast-tab">
+                     <app-reservation-table></app-reservation-table>
+                  </div>
+                  <div class="tab-pane fade single-member" id="Dinner" role="tabpanel"
+                        aria-labelledby="Dinner-tab">
+                      <app-users-table></app-users-table>
+                    </div>
+                    <div class="tab-pane fade single-member" id="Sneaks" role="tabpanel"
+                        aria-labelledby="Sneaks-tab">
+                        <app-chef-table></app-chef-table>
+                    </div>
+              </div>
+          </div>
+      </div>
   </div>
+</section>

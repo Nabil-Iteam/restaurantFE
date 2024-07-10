@@ -1,1 +1,33 @@
-<p>chef-table works!</p>
+!-- Chefs Table -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Specialty</th>
+      <th>Experience</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let chef of chefs">
+      <td>{{ chef.id }}</td>
+      <td>{{ chef.firstName }}</td>
+      <td>{{ chef.lastName }}</td>
+      <td>{{ chef.email }}</td>
+      <td>{{ chef.phone }}</td>
+      <td>{{ chef.address }}</td>
+      <td>{{ chef.specialty }}</td>
+      <td>{{ chef.experience }}</td>
+      <td>
+        <button (click)="displayChef()" class="btn btn-primary">Display</button>
+        <button (click)="editChef()" class="btn btn-secondary">Edit</button>
+        <button (click)="deleteChef()" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

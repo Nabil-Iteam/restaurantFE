@@ -1,1 +1,27 @@
-<p>reservation-table works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Client</th>
+        <th>Plat</th>
+        <th>Date</th>
+        <th>Nombre de Plats</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td>{{ reservation.id }}</td>
+        <td>{{ reservation.client }}</td>
+        <td>{{ reservation.plat }}</td>
+        <td>{{ reservation.date }}</td>
+        <td>{{ reservation.nombrePlats }}</td>
+        <td>
+            <button (click)="displayReservation()" class="btn btn-primary">Display</button>
+            <button (click)="editReservation()" class="btn btn-secondary">Edit</button>
+            <button (click)="deleteReservation()" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

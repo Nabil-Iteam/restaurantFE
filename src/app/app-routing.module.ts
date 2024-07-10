@@ -12,6 +12,7 @@ import { DishesTableComponent } from './components/dishes-table/dishes-table.com
 import { AddDishComponent } from './components/add-dish/add-dish.component';
 import { ChefManageComponent } from './components/chef-manage/chef-manage.component';
 import { AdminManageComponent } from './components/admin-manage/admin-manage.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'addDish', component: AddDishComponent },
   { path: 'chefManage', component: ChefManageComponent },
   { path: 'adminManage', component: AdminManageComponent },
+  { path: 'login', component: LoginComponent },
+
 
 
 

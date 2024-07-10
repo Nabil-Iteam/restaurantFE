@@ -26,6 +26,8 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
 import { DishesTableComponent } from './components/dishes-table/dishes-table.component';
 import { ReservationTableComponent } from './components/reservation-table/reservation-table.component';
 import { AddDishComponent } from './components/add-dish/add-dish.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -53,10 +55,14 @@ import { AddDishComponent } from './components/add-dish/add-dish.component';
     DishesTableComponent,
     ReservationTableComponent,
     AddDishComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

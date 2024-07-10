@@ -1,1 +1,25 @@
-<p>dishes-table works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dish of dishes">
+        <td>{{ dish.id }}</td>
+        <td>{{ dish.nom }}</td>
+        <td>{{ dish.description }}</td>
+        <td>{{ dish.prix }}</td>
+        <td>
+            <button (click)="displayDish()" class="btn btn-primary">Display</button>
+            <button (click)="editDish()" class="btn btn-secondary">Edit</button>
+            <button (click)="deleteDish()" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
