@@ -28,6 +28,8 @@ import { ReservationTableComponent } from './components/reservation-table/reserv
 import { AddDishComponent } from './components/add-dish/add-dish.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -56,13 +58,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReservationTableComponent,
     AddDishComponent,
     LoginComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

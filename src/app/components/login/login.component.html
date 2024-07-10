@@ -25,25 +25,27 @@
                 <div class="form-group">
                   <input class="form-control" formControlName="email"  type="email" 
                     placeholder="Enter your email address" required >
+                    <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty ||
+                      signupForm.controls['email'].touched )" class="text-danger">
+
+                        <div *ngIf="signupForm.controls['email'].errors?.['required']">Email is required</div>
+                        <div *ngIf="signupForm.controls['email'].errors?.['email']">Invalid email Format</div>
+                    </div>
                 </div>
               </div>
-              <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty ||
-                signupForm.controls['email'].touched )" class="text-danger">
-
-                  <div *ngIf="signupForm.controls['email'].errors?.['required']">First email is required</div>
-                  <div *ngIf="signupForm.controls['email'].errors?.['email']">Invalid email Format</div>
-              </div>
+              
               <div class="col-12">
                 <div class="form-group">
-                  <input class="form-control" name="password" formControlName="email"  type="password" 
+                  <input class="form-control" name="password" formControlName="password"  type="password" 
                     placeholder="Enter your password" >
+                    <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty ||
+                      signupForm.controls['password'].touched )" class="text-danger">
+                        <div *ngIf="signupForm.controls['password'].errors?.['required']">Password is required</div>
+                        <div *ngIf="signupForm.controls['password'].errors?.['pattern']">Invalid password Format</div>
+                    </div>
                 </div>
               </div>
-              <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty ||
-                signupForm.controls['password'].touched )" class="text-danger">
-                  <div *ngIf="signupForm.controls['password'].errors?.['required']">First password is required</div>
-                  <div *ngIf="signupForm.controls['password'].errors?.['pattern']">Invalid password Format</div>
-              </div>
+              
             </div>
             <div class="form-group mt-3">
               <button type="submit" class="button button-contactForm btn_4">Login</button>
