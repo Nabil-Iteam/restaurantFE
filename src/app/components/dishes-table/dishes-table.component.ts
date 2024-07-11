@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DishService } from 'src/app/services/dish.service';
 
 @Component({
   selector: 'app-dishes-table',
@@ -7,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DishesTableComponent implements OnInit {
 
-  dishes = [
-    { id: 1, nom: 'Pork Sandwich', description: 'Delicious pork sandwich', prix: 40.00 },
-    { id: 1, nom: 'Pork Sandwich', description: 'Delicious pork sandwich', prix: 40.00 },
-    { id: 1, nom: 'Pork Sandwich', description: 'Delicious pork sandwich', prix: 40.00 },
-    // Ajoutez d'autres plats ici
-  ];
-  constructor() { }
+  dishes : any = []
+  constructor(private dService : DishService) { }
 
   ngOnInit(): void {
+    this.dService.getAllDishes().subscribe(
+      (res)=>{
+        console.log("this is result from BE",res);
+        this.dishes = res
+      }
+    )
   }
 
   displayDish(){}

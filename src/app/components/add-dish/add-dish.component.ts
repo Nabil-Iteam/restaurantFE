@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DishService } from 'src/app/services/dish.service';
 
 @Component({
   selector: 'app-add-dish',
@@ -19,15 +22,24 @@ export class AddDishComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor(private dishService : DishService , private router :Router) { }
 
   ngOnInit(): void {
+    
+    console.log("sdsds",this.dish);
+    
   }
   addDish(): void {
-    // Vous pouvez implémenter ici la logique pour ajouter le plat
-    console.log('Plat à ajouter : ', this.dish);
-    console.log('Chef sélectionné : ', this.selectedChef);
-    // Exemple : appel à un service pour ajouter le plat avec le chef sélectionné
+    this.dishService.addDish(this.dish).subscribe(
+      
+      (res)=>{
+        console.log("sendeeeeeeeed",this.dish);
+        console.log("this is res from BE",res);
+        this.dish = res;
+        this.router.navigate([''])
+        
+      }
+    )
   }
 
 }
