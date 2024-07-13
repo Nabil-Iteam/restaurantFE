@@ -7,7 +7,7 @@
                     <h2>Delicious Food Menu</h2>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3" *ngIf="items.length>0">
                     <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search by name">
             </div>
             
@@ -15,9 +15,9 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active single-member" id="Special" role="tabpanel" aria-labelledby="Special-tab">
                         <div class="row">
-                            <div class="col-sm-6 col-lg-6" *ngFor="let item of Items | filter:searchTerm ">
+                            <div class="col-sm-6 col-lg-6" *ngFor="let item of items | filter:searchTerm ">
                                 <div class="single_food_item media">
-                                    <img src="{{ item.img }}" class="mr-3" alt="...">
+                                    <img src="./assets/img/food_menu/single_food_1.png" class="mr-3" alt="...">
                                     <div class="media-body align-self-center">
                                         <h3>{{ item.name }}</h3>
                                         <p>{{ item.description }}</p>

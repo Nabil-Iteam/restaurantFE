@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DishService } from 'src/app/services/dish.service';
 
@@ -10,36 +8,63 @@ import { DishService } from 'src/app/services/dish.service';
   styleUrls: ['./add-dish.component.css']
 })
 export class AddDishComponent implements OnInit {
-  addDishForm !: FormGroup
-  dish:any = {};
-  selectedChef !:""
+  dish: any = {}; // Objet plat
+  selectedChef = ''; // Chef sélectionné
   chefs = [
     { id: '1', firstName: 'John', lastName: 'Doe' },
     { id: '2', firstName: 'Jane', lastName: 'Smith' },
     { id: '3', firstName: 'Michael', lastName: 'Brown' }
-    // Ajoutez autant de chefs que nécessaire avec leurs données
-  ];
+  ]; // Liste des chefs
 
-  
+  id: any; // Identifiant du plat
 
-  constructor(private dishService : DishService , private router :Router) { }
+  constructor(
+    private dishService: DishService,
+    private router: Router
+      ) { }
 
   ngOnInit(): void {
-    
-    console.log("sdsds",this.dish);
-    
-  }
-  addDish(): void {
-    this.dishService.addDish(this.dish).subscribe(
-      
-      (res)=>{
-        console.log("sendeeeeeeeed",this.dish);
-        console.log("this is res from BE",res);
-        this.dish = res;
-        this.router.navigate([''])
-        
-      }
-    )
+    // Initialiser l'objet plat
+    this.dish = {
+      name: '',
+      description: '',
+      price: '',
+      chef: ''
+    };
   }
 
+  addDish(): void {
+    if (!this.dish.name || !this.dish.description || !this.dish.price || !this.selectedChef) {
+      alert('All fields are required!');
+      return;
+    }
+
+    const storedDishJSON = localStorage.getItem('dish');
+    let storedDishes = storedDishJSON ? JSON.parse(storedDishJSON) : [];
+
+    this.id = storedDishes.length ? storedDishes[storedDishes.length - 1].id + 1 : 1;
+
+    const newDish = {
+      id: this.id,
+      name: this.dish.name,
+      description: this.dish.description,
+      price: this.dish.price,
+      chef: this.selectedChef
+    };
+
+    storedDishes.push(newDish);
+
+    localStorage.setItem('dish', JSON.stringify(storedDishes));
+
+    console.log('Dish added:', newDish);
+
+    // Réinitialiser le formulaire
+    this.dish = {
+      name: '',
+      description: '',
+      price: '',
+      chef: ''
+    };
+    this.selectedChef = '';
+  }
 }

@@ -22,7 +22,7 @@
         <h2 class="contact-title">Signup Form</h2>
       </div>
       <div class="col-lg-12">
-        <form class="form-contact contact_form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <form class="form-contact contact_form" [formGroup]="signupForm" (ngSubmit)="signup()">
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
@@ -56,7 +56,7 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <input class="form-control" formControlName="phone" type="tel" 
+                <input class="form-control" formControlName="phone" type="number" 
                   placeholder="Enter your phone number">
               </div>
             </div>
@@ -99,7 +99,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group mt-3">
+          <!-- <div class="form-group mt-3">
             <select class="form-control" formControlName="userType" (change)="onUserTypeChange($event)">
               <option value="">Select User Type</option>
               <option value="client">Client</option>
@@ -108,7 +108,7 @@
             <div *ngIf="signupForm.controls['userType'].invalid && (signupForm.controls['userType'].dirty || signupForm.controls['userType'].touched || submitted)" class="text-danger">
               <div *ngIf="signupForm.controls['userType'].errors?.['required']">User type is required</div>
             </div>
-          </div>
+          </div> -->
           <div class="form-group mt-3">
             <button type="submit" class="button button-contactForm btn_4">Signup</button>
           </div>

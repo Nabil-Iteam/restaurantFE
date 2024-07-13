@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +12,7 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -22,38 +24,39 @@ export class SignupComponent implements OnInit {
       password: ["", [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       experience: ["", [Validators.required]],
       speciality: [""],
-      userType: ["", [Validators.required]]
+      //userType: ["", [Validators.required]]
     });
 
     // Initially set validation based on default userType (if any)
-    this.setSpecialityValidation(this.signupForm.controls['userType'].value);
+   // this.setSpecialityValidation(this.signupForm.controls['userType'].value);
   }
 
-  onUserTypeChange(event: any): void {
-    const userType = event.target.value;
-    this.setSpecialityValidation(userType);
-  }
+  // onUserTypeChange(event: any): void {
+  //   const userType = event.target.value;
+  //   this.setSpecialityValidation(userType);
+  // }
 
-  setSpecialityValidation(userType: string): void {
-    const specialityControl = this.signupForm.get('speciality');
+  // setSpecialityValidation(userType: string): void {
+  //   const specialityControl = this.signupForm.get('speciality');
 
-    if (userType === 'chef') {
-      specialityControl?.setValidators([Validators.required]);
-    } else {
-      specialityControl?.clearValidators();
-    }
+  //   if (userType === 'chef') {
+  //     specialityControl?.setValidators([Validators.required]);
+  //   } else {
+  //     specialityControl?.clearValidators();
+  //   }
 
-    specialityControl?.updateValueAndValidity();
-  }
+  //   specialityControl?.updateValueAndValidity();
+  // }
 
-  onSubmit(): void {
-    this.submitted = true;
+  signup(){
+    console.log(this.signupForm.value);
+    this.signupForm.value.roleNames =["chef","client"]
 
-    if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
-      // Implement your form submission logic here
-    } else {
-      console.log('Form is invalid');
-    }
+    this.authService.register(this.signupForm).subscribe(
+      (res)=>{
+        console.log("the res from BE is" , res);
+        
+      }
+    );
   }
 }

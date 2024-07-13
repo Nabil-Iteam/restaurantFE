@@ -1,0 +1,10 @@
+.form-control {
+    margin: 40px 0px;
+}
+
+@media (min-width: 991x) {
+    .form-control {
+        margin: 40px 0px !important;
+    }
+    
+}

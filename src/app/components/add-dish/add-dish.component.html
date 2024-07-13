@@ -1,60 +1,57 @@
 <!-- Breadcrumb Section -->
 <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="breadcrumb_iner text-center">
-            <div class="breadcrumb_iner_item">
-              <h2>Login</h2>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb_iner text-center">
+          <div class="breadcrumb_iner_item">
+            <h2>Add Dish</h2>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- End Breadcrumb Section -->
-  
-  <!-- Login Form Section -->
-  <section class="contact-section section_padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <form class="form-contact contact_form" #addDishForm="ngForm" (ngSubmit)="addDish()">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <input class="form-control" [(ngModel)]="dish.name" [ngModelOptions]="{standalone : true}"  type="text" 
-                    placeholder="Dish name" required >
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <input class="form-control" [(ngModel)]="dish.description" [ngModelOptions]="{standalone : true}"  type="text" 
-                    placeholder="Dish description" required >
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <input class="form-control" [(ngModel)]="dish.price" [ngModelOptions]="{standalone : true}"  type="number" 
-                    placeholder="Dish Price" required >
-                </div>
+  </div>
+</section>
+<!-- End Breadcrumb Section -->
+
+<!-- Add Dish Form Section -->
+<section class="contact-section section_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <form class="form-contact contact_form" #DishForm="ngForm" (ngSubmit)="addDish()">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <input class="form-control" [(ngModel)]="dish.name" name="name" type="text" placeholder="Dish name" required>
               </div>
             </div>
-            <!-- <div class="col-12">
-                <div class="form-group">
-                  <label>Select Chef:</label>
-                  <select class="form-control" [(ngModel)]="selectedChef" name="chef" required>
-                    <option *ngFor="let chef of chefs" [value]="chef.id">{{ chef.firstName }} {{ chef.lastName }}</option>
-                  </select>
-                </div>
-              </div> -->
+            <div class="col-12">
+              <div class="form-group">
+                <input class="form-control" [(ngModel)]="dish.description" name="description" type="text" placeholder="Dish description" required>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <input class="form-control" [(ngModel)]="dish.price" name="price" type="number" placeholder="Dish Price" required>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label>Select Chef:</label>
+                <select class="form-control" [(ngModel)]="selectedChef" name="chef" required>
+                  <option value="" disabled selected>Select a Chef</option>
+                  <option *ngFor="let chef of chefs" [value]="chef.id">{{ chef.firstName }} {{ chef.lastName }}</option>
+                </select>
+              </div>
+            </div>
             <div class="form-group mt-3">
-              <button type="submit" class="button button-contactForm btn_4">Login</button>
+              <button type="submit" class="button button-contactForm btn_4">Add Dish</button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
-  <!-- End Login Form Section -->
-  
+  </div>
+</section>
+<!-- End Add Dish Form Section -->
