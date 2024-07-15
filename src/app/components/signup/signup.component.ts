@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
+  displayFields = false;
+  roleNames: any;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
@@ -22,40 +24,60 @@ export class SignupComponent implements OnInit {
       phone: [""],
       address: [""],
       password: ["", [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      experience: ["", [Validators.required]],
-      speciality: [""],
-      //userType: ["", [Validators.required]]
+      experience: [""],  
+      speciality: [""], 
+      roleNames: ["client", [Validators.required]]
     });
 
-    // Initially set validation based on default userType (if any)
-   // this.setSpecialityValidation(this.signupForm.controls['userType'].value);
+    this.signupForm.get('roleNames')?.valueChanges.subscribe((value) => {
+      this.setFieldValidations(value);
+    });
+
+    // Initially set validation based on default roleNames (if any)
+    this.setFieldValidations(this.signupForm.controls['roleNames'].value);
   }
 
-  // onUserTypeChange(event: any): void {
-  //   const userType = event.target.value;
-  //   this.setSpecialityValidation(userType);
-  // }
+  setFieldValidations(roleNames: string): void {
+    const experienceControl = this.signupForm.get('experience');
+    const specialityControl = this.signupForm.get('speciality');
 
-  // setSpecialityValidation(userType: string): void {
-  //   const specialityControl = this.signupForm.get('speciality');
+    if (roleNames === 'chef') {
+      experienceControl?.setValidators([Validators.required]);
+      specialityControl?.setValidators([Validators.required]);
+      this.displayFields = true;
+    } else {
+      experienceControl?.clearValidators();
+      specialityControl?.clearValidators();
+      this.displayFields = false;
+    }
 
-  //   if (userType === 'chef') {
-  //     specialityControl?.setValidators([Validators.required]);
-  //   } else {
-  //     specialityControl?.clearValidators();
-  //   }
+    experienceControl?.updateValueAndValidity();
+    specialityControl?.updateValueAndValidity();
+  }
 
-  //   specialityControl?.updateValueAndValidity();
-  // }
+  signup(): void {
+    if (this.signupForm.invalid) {
+      return;
+    }
+    console.log("the res from BE is", this.signupForm.value);
+    const formValues = this.signupForm.value;
 
-  signup(){
-    console.log(this.signupForm.value);
-    this.signupForm.value.roleNames =["chef","client"]
+    // Set roleNames dynamically based on roleNames
+    if (formValues.roleNames === 'chef') {
+      formValues.roleNames = ['chef'];
+    } else if (formValues.roleNames === 'client') {
+      formValues.roleNames = ['client'];
+    } else {
+      formValues.roleNames = [];
+    }
 
-    this.authService.register(this.signupForm).subscribe(
-      (res)=>{
-        console.log("the res from BE is" , res);
-        
+    this.authService.register(formValues).subscribe(
+      (res) => {
+        console.log("the res from BE is", res);
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Error during signup:', error);
       }
     );
   }

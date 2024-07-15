@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DishService } from 'src/app/services/dish.service';
 
 @Component({
   selector: 'app-popular-menu',
@@ -7,16 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopularMenuComponent implements OnInit {
   searchTerm: string = ''; // Terme de recherche pour filtrer les plats
-  items: any[] = []; // Liste des plats
+  items: any = []; // Liste des plats
+  image : any ="./assets/img/food_menu/single_food_1.png"
 
-  constructor() { }
+  constructor(private dServie:DishService ) { }
 
   ngOnInit(): void {
-    // Récupérer les plats stockés dans le local storage
-    const storedDishJSON = localStorage.getItem('dish');
-    this.items = storedDishJSON ? JSON.parse(storedDishJSON) : [];
-
-    // Afficher les plats récupérés dans la console
-    console.log('Dishes from local storage:', this.items);
+    this.dServie.getAllDishes().subscribe(
+      (res)=>{
+        console.log("this is res from BE", res);
+        this.items = res;
+      }
+    )
   }
+
+  showDetails(){}
 }

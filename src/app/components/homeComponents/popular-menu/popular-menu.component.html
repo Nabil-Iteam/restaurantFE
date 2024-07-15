@@ -17,11 +17,12 @@
                         <div class="row">
                             <div class="col-sm-6 col-lg-6" *ngFor="let item of items | filter:searchTerm ">
                                 <div class="single_food_item media">
-                                    <img src="./assets/img/food_menu/single_food_1.png" class="mr-3" alt="...">
+                                    <img src="{{image}}" class="mr-3" alt="...">
                                     <div class="media-body align-self-center">
                                         <h3>{{ item.name }}</h3>
                                         <p>{{ item.description }}</p>
                                         <h5>${{ item.price }}</h5>
+                                        <button type="button" class="btn btn-primary" (click)="showDetails()">Details</button>
                                     </div>
                                 </div>
                             </div>

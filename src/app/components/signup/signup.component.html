@@ -76,7 +76,17 @@
                 </div>
               </div>
             </div>
-            <div class="col-12">
+            <div class="form-group mt-3 col-12">
+              <select class="form-control" formControlName="roleNames">
+                <option value="">Select User Type</option>
+                <option value="client">Client</option>
+                <option value="chef">Chef</option>
+              </select>
+              <div *ngIf="signupForm.controls['roleNames'].invalid && (signupForm.controls['roleNames'].dirty || signupForm.controls['roleNames'].touched || submitted)" class="text-danger">
+                <div *ngIf="signupForm.controls['roleNames'].errors?.['required']">User type is required</div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="displayFields == true">
               <div class="form-group">
                 <input class="form-control" formControlName="experience" type="text" 
                   placeholder="Enter your experience" required>
@@ -85,7 +95,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" *ngIf="displayFields == true">
               <div class="form-group mt-3">
                 <select class="form-control" formControlName="speciality">
                   <option value="">Select Your Speciality</option>
@@ -93,22 +103,12 @@
                   <option value="pasta">Pasta</option>
                   <option value="healthy">Healthy</option>
                 </select>
-                <div *ngIf="signupForm.controls['speciality'].invalid && (signupForm.controls['speciality'].dirty || signupForm.controls['speciality'].touched || submitted)" class="text-danger">
+                <div *ngIf="signupForm.controls['speciality'].invalid && (signupForm.controls['speciality'].dirty || signupForm.controls['speciality'].touched || submitted || roleNames.value== 'chef' )" class="text-danger">
                   <div *ngIf="signupForm.controls['speciality'].errors?.['required']">Speciality is required for chefs</div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="form-group mt-3">
-            <select class="form-control" formControlName="userType" (change)="onUserTypeChange($event)">
-              <option value="">Select User Type</option>
-              <option value="client">Client</option>
-              <option value="chef">Chef</option>
-            </select>
-            <div *ngIf="signupForm.controls['userType'].invalid && (signupForm.controls['userType'].dirty || signupForm.controls['userType'].touched || submitted)" class="text-danger">
-              <div *ngIf="signupForm.controls['userType'].errors?.['required']">User type is required</div>
-            </div>
-          </div> -->
           <div class="form-group mt-3">
             <button type="submit" class="button button-contactForm btn_4">Signup</button>
           </div>

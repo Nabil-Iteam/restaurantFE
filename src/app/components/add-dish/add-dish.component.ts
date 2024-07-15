@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DishService } from 'src/app/services/dish.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-dish',
@@ -8,29 +10,25 @@ import { DishService } from 'src/app/services/dish.service';
   styleUrls: ['./add-dish.component.css']
 })
 export class AddDishComponent implements OnInit {
-  dish: any = {}; // Objet plat
-  selectedChef = ''; // Chef sélectionné
-  chefs = [
-    { id: '1', firstName: 'John', lastName: 'Doe' },
-    { id: '2', firstName: 'Jane', lastName: 'Smith' },
-    { id: '3', firstName: 'Michael', lastName: 'Brown' }
-  ]; // Liste des chefs
-
-  id: any; // Identifiant du plat
+  dish: any = {}; 
+  selectedChef = ''; 
+  chefs: any = [{id:1 , firstName : "Nabil" , lastName :"Najeh"}];
+  id: number = 0;
+  dishForm !: FormGroup ;
 
   constructor(
     private dishService: DishService,
+    private userService : UserService,
     private router: Router
-      ) { }
+  ) { }
 
   ngOnInit(): void {
-    // Initialiser l'objet plat
-    this.dish = {
-      name: '',
-      description: '',
-      price: '',
-      chef: ''
-    };
+    // this.userService.getUserByRole("chef").subscribe(
+    //   (res)=>{
+    //     console.log("this res from BE to show Chefs",res);
+    //     this.chefs = res ;
+    //   }
+    // )
   }
 
   addDish(): void {
@@ -38,33 +36,11 @@ export class AddDishComponent implements OnInit {
       alert('All fields are required!');
       return;
     }
-
-    const storedDishJSON = localStorage.getItem('dish');
-    let storedDishes = storedDishJSON ? JSON.parse(storedDishJSON) : [];
-
-    this.id = storedDishes.length ? storedDishes[storedDishes.length - 1].id + 1 : 1;
-
-    const newDish = {
-      id: this.id,
-      name: this.dish.name,
-      description: this.dish.description,
-      price: this.dish.price,
-      chef: this.selectedChef
-    };
-
-    storedDishes.push(newDish);
-
-    localStorage.setItem('dish', JSON.stringify(storedDishes));
-
-    console.log('Dish added:', newDish);
-
-    // Réinitialiser le formulaire
-    this.dish = {
-      name: '',
-      description: '',
-      price: '',
-      chef: ''
-    };
-    this.selectedChef = '';
+    
+    this.dishService.addDish(this.dish).subscribe(
+      (res)=>{
+        console.log("this res from BE",res);
+      }
+    )
   }
 }
