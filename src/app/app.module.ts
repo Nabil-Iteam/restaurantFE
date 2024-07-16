@@ -30,6 +30,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
+import { EditDishComponent } from './components/edit-dish/edit-dish.component';
+import { DisplayDishComponent } from './components/display-dish/display-dish.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     AddDishComponent,
     LoginComponent,
     FilterPipe,
+    EditDishComponent,
+    DisplayDishComponent,
   ],
   imports: [
     BrowserModule,

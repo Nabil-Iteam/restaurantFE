@@ -11,10 +11,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddDishComponent implements OnInit {
   dish: any = {}; 
-  selectedChef = ''; 
-  chefs: any = [{id:1 , firstName : "Nabil" , lastName :"Najeh"}];
-  id: number = 0;
-  dishForm !: FormGroup ;
+  chefs: any = [
+    {id:1 , firstName : "Nabil" , lastName :"Najeh"},
+    {id:2 , firstName : "Chef" , lastName :"Bourek"},
+    {id:3 , firstName : "Nabil" , lastName :"Najeh"},
+    ];
+    chefId !: any ;
+    dishForm !: FormGroup ;
 
   constructor(
     private dishService: DishService,
@@ -30,12 +33,20 @@ export class AddDishComponent implements OnInit {
     //   }
     // )
   }
+  selectChef(evt : any){
+    console.log("here chef id", evt.target.value);
+    this.chefId = evt.target.value ;
+  }
 
   addDish(): void {
-    if (!this.dish.name || !this.dish.description || !this.dish.price || !this.selectedChef) {
+    if (!this.dish.name || !this.dish.description || !this.dish.price || !this.chefId) {
       alert('All fields are required!');
       return;
     }
+
+    // this.dish.chefId = {id: Number(this.chefId)};
+    console.log("hello friend this is id ",this.dish.chefId);
+    console.log("this is dish",this.dish);
     
     this.dishService.addDish(this.dish).subscribe(
       (res)=>{
@@ -43,4 +54,5 @@ export class AddDishComponent implements OnInit {
       }
     )
   }
+  
 }

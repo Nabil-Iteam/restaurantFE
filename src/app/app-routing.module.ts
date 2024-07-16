@@ -13,6 +13,8 @@ import { AddDishComponent } from './components/add-dish/add-dish.component';
 import { ChefManageComponent } from './components/chef-manage/chef-manage.component';
 import { AdminManageComponent } from './components/admin-manage/admin-manage.component';
 import { LoginComponent } from './components/login/login.component';
+import { EditDishComponent } from './components/edit-dish/edit-dish.component';
+import { DisplayDishComponent } from './components/display-dish/display-dish.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'chefManage', component: ChefManageComponent },
   { path: 'adminManage', component: AdminManageComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'editDish/:id', component: EditDishComponent },
+  { path: 'displayDish/:id', component: DisplayDishComponent },
 
 
 

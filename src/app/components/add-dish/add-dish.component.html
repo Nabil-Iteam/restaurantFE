@@ -30,7 +30,7 @@
               <div class="form-group">
                 <input class="form-control" [(ngModel)]="dish.description" name="description" type="text" placeholder="Dish description" required>
               </div>
-            </div>
+               </div>
             <div class="col-12">
               <div class="form-group">
                 <input class="form-control" [(ngModel)]="dish.price" name="price" type="number" placeholder="Dish Price" required>
@@ -39,7 +39,7 @@
             <div class="col-12">
               <div class="form-group">
                 <label>Select Chef:</label>
-                <select class="form-control" [(ngModel)]="selectedChef" name="chef" required>
+                <select class="form-control" name="selectChef" (change)="selectChef($event)"  required>
                   <option value="" disabled selected>Select a Chef</option>
                   <option *ngFor="let chef of chefs" [value]="chef.id">{{ chef.firstName }} {{ chef.lastName }}</option>
                 </select>

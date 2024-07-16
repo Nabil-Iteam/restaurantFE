@@ -15,9 +15,9 @@
         <td>{{ dish.description }}</td>
         <td>{{ dish.price }}</td>
         <td>
-            <button (click)="displayDish()" class="btn btn-primary">Display</button>
-            <button (click)="editDish()" class="btn btn-secondary">Edit</button>
-            <button (click)="deleteDish()" class="btn btn-danger">Delete</button>
+            <button (click)="displayDish(dish.id)" class="btn btn-primary">Display</button>
+            <button (click)="editDish(dish.id)" class="btn btn-secondary">Edit</button>
+            <button (click)="deleteDish(dish.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </tbody>
