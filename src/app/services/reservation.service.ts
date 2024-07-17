@@ -5,23 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ReservationService {
-  reservationURL: string = "http://localhost:8090/api/reservations";
+  baseURL: string = "http://localhost:8090/api/reservations";
 
   constructor(private httpClient: HttpClient) { }
 
   getAllReservations() {
-    return this.httpClient.get(this.reservationURL);
+    return this.httpClient.get(this.baseURL);
   }
 
   getReservationById(id: number) {
-    return this.httpClient.get(`${this.reservationURL}/${id}`);
+    return this.httpClient.get(`${this.baseURL}/${id}`);
   }
 
   deleteReservationById(id: number) {
-    return this.httpClient.delete(`${this.reservationURL}/${id}`);
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 
   addReservation(obj: any) {
-    return this.httpClient.post(this.reservationURL, obj);
+    return this.httpClient.post(this.baseURL, obj);
   }
 }

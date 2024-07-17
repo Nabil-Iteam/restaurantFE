@@ -12,6 +12,7 @@ export class UserService {
   getAllUsers() {
     return this.httpClient.get(this.userURL);
   }
+  
 
   getUserById(id: number) {
     return this.httpClient.get(`${this.userURL}/${id}`);
@@ -29,7 +30,7 @@ export class UserService {
     return this.httpClient.post(this.userURL, obj);
   }
 
-  getUserByRole(role: string) {
+  findByRoleNames(role: string) {
     return this.httpClient.get(this.userURL + "/role/" + role);
   }
 }
