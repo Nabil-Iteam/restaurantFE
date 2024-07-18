@@ -11,10 +11,20 @@ export class DisplayDishComponent implements OnInit {
 dish : any={};
 id !: number;
 img : string = "";
-quantity : number=1;
 image : any ="./assets/img/food_menu/single_food_1.png"
   constructor(private dService : DishService, private activatedRoute :ActivatedRoute ) { }
+  quantity: number = 1;
 
+  increaseQuantity() {
+    this.quantity++;
+  }
+
+  decreaseQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+  
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.dService.getDishById(this.id).subscribe(
@@ -25,5 +35,6 @@ image : any ="./assets/img/food_menu/single_food_1.png"
       }
       )
   }
+  addToCart(){}
 
 }

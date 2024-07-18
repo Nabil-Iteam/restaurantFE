@@ -13,14 +13,13 @@ export class UserService {
     return this.httpClient.get(this.userURL);
   }
   
-
   getUserById(id: number) {
     return this.httpClient.get(`${this.userURL}/${id}`);
   }
 
   deleteUserById(id: number) {
     return this.httpClient.delete(`${this.userURL}/${id}`);
-  }
+  } 
 
   updateUser(obj: any) {
     return this.httpClient.put(this.userURL, obj);
@@ -30,7 +29,8 @@ export class UserService {
     return this.httpClient.post(this.userURL, obj);
   }
 
-  findByRoleNames(role: string) {
-    return this.httpClient.get(this.userURL + "/role/" + role);
+  getUsersByRole(role: string) {
+    return this.httpClient.get(`${this.userURL}/role/${role}`);
   }
+
 }

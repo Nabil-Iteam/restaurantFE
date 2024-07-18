@@ -11,31 +11,32 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddDishComponent implements OnInit {
   dish: any = {}; 
-  chefs: any = [
-    {id:1 , firstName : "Nabil" , lastName :"Najeh"},
-    {id:2 , firstName : "Chef" , lastName :"Bourek"},
-    {id:3 , firstName : "Nabil" , lastName :"Najeh"},
-    ];
-    chefId !: any ;
-    dishForm !: FormGroup ;
+  chefs: any = [];
+  allUsers: any = [];
+  chefId!: any;
+  dishForm!: FormGroup;
+  role = "chef";
 
   constructor(
     private dishService: DishService,
-    private userService : UserService,
+    private userService: UserService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    // this.userService.getUserByRole("chef").subscribe(
-    //   (res)=>{
-    //     console.log("this res from BE to show Chefs",res);
-    //     this.chefs = res ;
-    //   }
-    // )
+
+    this.userService.getUsersByRole(this.role).subscribe(
+      (res)=>{
+        console.log("this is res of all chefs",res);
+        this.chefs = res ;
+        
+      }
+    )
   }
-  selectChef(evt : any){
+
+  selectChef(evt: any): void {
     console.log("here chef id", evt.target.value);
-    this.chefId = evt.target.value ;
+    this.chefId = evt.target.value;
   }
 
   addDish(): void {
@@ -44,15 +45,15 @@ export class AddDishComponent implements OnInit {
       return;
     }
 
-    // this.dish.chefId = {id: Number(this.chefId)};
-    console.log("hello friend this is id ",this.dish.chefId);
-    console.log("this is dish",this.dish);
+    console.log("hello friend this is id ", this.chefId);
+    console.log("this is dish", this.dish);
+    this.dish.user = { id: Number(this.chefId) };
+    console.log("this is dish after push user id ",this.dish);
     
     this.dishService.addDish(this.dish).subscribe(
-      (res)=>{
-        console.log("this res from BE",res);
+      (res) => {
+        console.log("this res from BE", res);
       }
-    )
+    );
   }
-  
 }
