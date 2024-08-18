@@ -15,6 +15,9 @@ import { AdminManageComponent } from './components/admin-manage/admin-manage.com
 import { LoginComponent } from './components/login/login.component';
 import { EditDishComponent } from './components/edit-dish/edit-dish.component';
 import { DisplayDishComponent } from './components/display-dish/display-dish.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -32,9 +35,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'editDish/:id', component: EditDishComponent },
   { path: 'displayDish/:id', component: DisplayDishComponent },
-
-
-
+  { path: 'userDetails/:id', component: UserDetailsComponent },
+  { path: 'reservationDetails/:id', component: ReservationDetailsComponent },
+  { path: 'editUser/:id', component : EditUserComponent },
 
 
 ];

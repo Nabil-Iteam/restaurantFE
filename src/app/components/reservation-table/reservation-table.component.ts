@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ReservationService } from 'src/app/services/reservation.service';
 
 @Component({
   selector: 'app-reservation-table',
@@ -7,19 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationTableComponent implements OnInit {
 
-  reservations = [
-    { id: 1, client: 'John Doe', plat: 'Pork Sandwich', date: '2024-07-01', nombrePlats: 2 },
-    { id: 1, client: 'John Doe', plat: 'Pork Sandwich', date: '2024-07-01', nombrePlats: 2 },
-    { id: 1, client: 'John Doe', plat: 'Pork Sandwich', date: '2024-07-01', nombrePlats: 2 },
-    // Ajoutez d'autres réservations ici
-  ];
-  constructor() { }
+  reservations :any = [];
+  constructor(private sReservation : ReservationService , private router : Router) { }
 
   ngOnInit(): void {
-    
+    console.log('this is reservation from BE');
+    this.sReservation.getAllReservations().subscribe(
+      (res)=> {
+        console.log('this is reservation from BE' , res);
+        this.reservations = res ;
+      }
+      )
   }
-  displayReservation(){}
-  deleteReservation(){}
-  editReservation(){}
+  
+  displayReservation(id : number){
+    this.router.navigate(['reservationDetails/'+id]) 
+   }
+
+  deleteReservation(id : number){
+    this.sReservation.deleteReservationById(id).subscribe(
+      (res)=>{
+        console.log(`succes delete from reservation has id ${id } this is rest of reservation ${res}`);
+        this.sReservation.getAllReservations().subscribe(
+          (res)=> {
+            this.reservations = res ;
+          }
+
+        )
+      }
+    )
+  }
 
 }

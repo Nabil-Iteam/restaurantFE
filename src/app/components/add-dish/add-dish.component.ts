@@ -53,7 +53,10 @@ export class AddDishComponent implements OnInit {
     this.dishService.addDish(this.dish).subscribe(
       (res) => {
         console.log("this res from BE", res);
+        this.dish = {};
+        this.chefId = null;
       }
     );
+    
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-chef-table',
@@ -6,17 +8,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chef-table.component.css']
 })
 export class ChefTableComponent implements OnInit {
-  chefs = [
-    { id: 1, firstName: 'John', lastName: 'Doe', email: 'john@example.com', phone: '123-456-7890', address: '123 Street', specialty: 'Italian', experience: 10 },
-    { id: 2, firstName: 'Jane', lastName: 'Doe', email: 'jane@example.com', phone: '987-654-3210', address: '456 Avenue', specialty: 'French', experience: 8 }
-  ];
+  chefs : any = [];
 
-  constructor() { }
+  userRole = "chef";
+  constructor(private userService :UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.userService.getUsersByRole(this.userRole).subscribe(
+      (res)=>{
+        console.log("this res from BE", res);
+        this.chefs = res ;
+        
+      }
+    )
   }
 
-  displayChef(){}
-  deleteChef(){}
-  editChef(){}
+  displayChef(id : number){
+    this.router.navigate(["userDetails/"+id])
+  }
+  deleteChef(id : number){
+    this.userService.deleteUserById(id).subscribe(
+      (res) =>{console.log("this res from BE", res);
+      this.userService.getUsersByRole(this.userRole).subscribe(
+        (res)=>{
+          this.chefs = res ;
+          
+        }
+      )
+      }
+    
+    )
+  }
+  editChef(id : number){
+    this.router.navigate(["editUser/"+id])
+  }
 }

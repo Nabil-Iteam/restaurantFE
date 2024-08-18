@@ -23,9 +23,9 @@
       <td>{{ chef.specialty }}</td>
       <td>{{ chef.experience }}</td>
       <td>
-        <button (click)="displayChef()" class="btn btn-primary">Display</button>
-        <button (click)="editChef()" class="btn btn-secondary">Edit</button>
-        <button (click)="deleteChef()" class="btn btn-danger">Delete</button>
+        <button (click)="displayChef(chef.id)" class="btn btn-primary">Display</button>
+        <button (click)="editChef(chef.id)" class="btn btn-secondary">Edit</button>
+        <button (click)="deleteChef(chef.id)" class="btn btn-danger">Delete</button>
       </td>
     </tr>
   </tbody>

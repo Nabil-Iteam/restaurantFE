@@ -30,18 +30,18 @@
                           <img [src]="imageUrl" class="img-fluid rounded-3" alt="Shopping item" style="width: 100px; margin: 10px; border-radius: 9px;" >
                         </div>
                         <div class="ms-3">
-                          <h5>{{ item.name }}</h5>
-                          <p class="small mb-0">{{ item.description }}</p>
+                          <h5>{{ item.dish.name }}</h5>
+                          <p class="small mb-0">{{ item.dish.description }}</p>
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">{{ item.quantity }}</h5>
+                          <h5 class="fw-normal mb-0">{{ item.dish.quantity }}</h5>
                         </div>
                         <div style="width: 80px;">
-                          <h5 class="mb-0">${{ item.price }}</h5>
+                          <h5 class="mb-0">${{ item.dish.price }}</h5>
                         </div>
-                        <a (click)="deleteDish(item.id)" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                        <a (click)="deleteReservation(item.id)" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                       </div>
                     </div>
                   </div>

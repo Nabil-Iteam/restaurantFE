@@ -11,17 +11,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.id }}</td>
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.phone }}</td>
-        <td>{{ user.address }}</td>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.firstName }}</td>
+        <td>{{ client.lastName }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td>{{ client.address }}</td>
         <td>
-          <button (click)="displayUser()" class="btn btn-primary">Display</button>
-          <button (click)="editUser()" class="btn btn-secondary">Edit</button>
-          <button (click)="deleteUser()" class="btn btn-danger">Delete</button>
+          <button (click)="displayClient(client.id)" class="btn btn-primary">Display</button>
+          <button (click)="editClient(client.id)" class="btn btn-secondary">Edit</button>
+          <button (click)="deleteClient(client.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </tbody>

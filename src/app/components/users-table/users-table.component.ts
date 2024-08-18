@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-users-table',
@@ -6,16 +8,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-table.component.css']
 })
 export class UsersTableComponent implements OnInit {
-  users = [
-    { id: 1, firstName: 'Alice', lastName: 'Smith', email: 'alice@example.com', phone: '555-555-5555', address: '789 Road' },
-    { id: 2, firstName: 'Bob', lastName: 'Brown', email: 'bob@example.com', phone: '444-444-4444', address: '101 Highway' }
-  ];
-  constructor() { }
+  clients : any = [];
+
+  userRole = "client";
+  constructor(private userService :UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.userService.getUsersByRole(this.userRole).subscribe(
+      (res)=>{
+        console.log("this res from BE", res);
+        this.clients = res ;
+        
+      }
+    )
   }
-  displayUser(){}
-  deleteUser(){}
-  editUser(){}
 
+  displayClient(id : number){
+    this.router.navigate(["userDetails/"+id])
+  }
+  deleteClient(id : number){
+    this.userService.deleteUserById(id).subscribe(
+      (res) =>{console.log("this res from BE", res);
+      this.userService.getUsersByRole(this.userRole).subscribe(
+        (res)=>{
+          this.clients = res ;
+          
+        }
+      )
+      }
+    
+    )
+  }
+  editClient(id : number){
+    this.router.navigate(["editUser/"+id])
+  }
 }
